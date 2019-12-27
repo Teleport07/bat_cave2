@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 import static com.sun.javafx.util.Utils.split;
 
-public class Inventory extends JPanel implements ActionListener{
+public class Inventory extends JPanel{
     JButton b1,b2,b3,b4,b5,b6;
     Label lab;
     ArrayList<JButton> invItems;
-    MainPanel mP;
+    //MainPanel mP;
     Inventory(MainPanel mp){
-        mP = mp;
+        //mP = mp;
         setLayout(new GridLayout(2,3,5,5));
         setBorder(BorderFactory.createLineBorder(Color.gray,1));
         b1 = new JButton();
@@ -35,23 +35,24 @@ public class Inventory extends JPanel implements ActionListener{
         invItems.add(b5);
         invItems.add(b6);
 
-        //addButtons();
-        //lab = new Label("Text here");
-        //add(lab);
         for(JButton butt : invItems){
             butt.setPreferredSize(new Dimension(80,80));
             butt.setActionCommand("0");
-            butt.addActionListener(this);
+            butt.addActionListener(new InventoryListener(mp, true));
             add(butt);
         }
     }
 
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand()!="0"){
             String mass[];
             String mass1[];
+
             mass = split(e.getActionCommand()," ");
+            if(mass[0].equals("BOTRK")){
+                new DialogHp(mP);
+            }
             try(BufferedReader reader = new BufferedReader(new FileReader(mass[1]+".txt"))){
                 String s;
                 while((s=reader.readLine())!=null){
@@ -78,5 +79,5 @@ public class Inventory extends JPanel implements ActionListener{
             ((JButton) e.getSource()).setActionCommand("0");
         }
 
-    }
+    }*/
 }

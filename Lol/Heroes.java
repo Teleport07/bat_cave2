@@ -28,7 +28,7 @@ public class Heroes implements ItemListener {
                         mass = split(s, " ");
                         mP.attackDamageLvl1 = Double.parseDouble(mass[1]);
                         mP.basicAS = Double.parseDouble(mass[3]);
-                        mP.setStats(hero);
+                        mP.setStats();
                         System.out.println("Damage "+mP.attackDamageLvl1);
                         System.out.println("AS "+ mP.basicAS);
                         break;

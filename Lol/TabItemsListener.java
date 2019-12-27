@@ -15,6 +15,7 @@ public class TabItemsListener implements ActionListener {
     MainPanel mP;
     String name;
     String [] mass;
+    DialogHp dialog;
     TabItemsListener(MainPanel mp, String it){
         mP = mp;
         name = it;
@@ -27,6 +28,9 @@ public class TabItemsListener implements ActionListener {
         if(e.getActionCommand().equals("InfinityEdge")) {
             mP.critCof = 2.2;
             mP.critCof_Jhin = 1.68;
+        }
+        if(e.getActionCommand().equals("BOTRK")){
+            dialog = new DialogHp(mP);
         }
         for (JButton butt : mP.inv.invItems) {
             if (butt.getActionCommand() == "0") {
@@ -47,6 +51,7 @@ public class TabItemsListener implements ActionListener {
                             break;
                         }
                     }
+                    System.out.println("Ratio "+mP.ratioItem);
                 }catch (IOException ex){
                     ex.printStackTrace();
                 }

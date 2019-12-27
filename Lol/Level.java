@@ -23,16 +23,14 @@ public class Level implements ItemListener {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             lev = Integer.parseInt((String) e.getItem());
             try (BufferedReader reader = new BufferedReader(new FileReader(mP.heroes.getSelectedItem() + ".txt"));
-            BufferedReader reader1 = new BufferedReader(new FileReader(mP.heroes.getSelectedItem() + "_D.txt"))) {
+                 BufferedReader reader1 = new BufferedReader(new FileReader(mP.heroes.getSelectedItem() + "_D.txt"))) {
                 String r;
                 String[] mass;
                 if (mP.heroes.getSelectedItem().equals("Jhin")) {
-                    System.out.println("внутри");
-                    while((r=reader.readLine())!=null){
+                    while ((r = reader.readLine()) != null) {
                         mass = split(r, " ");
-                        if(Integer.parseInt(mass[0]) == lev){
+                        if (Integer.parseInt(mass[0]) == lev) {
                             mP.attackSpeed = Double.parseDouble(mass[1]);
-                            //System.out.println("AS2 "+mP.attackSpeed);
                             break;
                         }
                     }
@@ -40,7 +38,6 @@ public class Level implements ItemListener {
                         mass = split(r, " ");
                         if(Integer.parseInt(mass[0]) == lev){
                             mP.Jhin_BaseAd = Double.parseDouble(mass[1]);
-                            //System.out.println("Base AD "+mP.Jhin_BaseAd);
                             break;
                         }
                     }
@@ -66,7 +63,6 @@ public class Level implements ItemListener {
                         mass = split(r, " ");
                         if (Integer.parseInt(mass[0]) == lev) {
                             mP.ratio_base = Double.parseDouble(mass[1]);
-                            //mP.lvl = lev;
                             break;
                         }
                     }
