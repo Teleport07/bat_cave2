@@ -1,0 +1,10 @@
+PhantomDancer 30 25 0 2600
+Runaan 40 25 0 2600
+Zeal 12 25 0 1400
+Statikk 40 25 0 2600
+Rapid 30 25 0 2600
+Guinsoo 25 0 25 3100
+Dagger 12 0 0 300
+RecurveBow 25 0 15 1000
+Cloak 0 25 0 800
+Kircheis 15 0 0 700

@@ -1,0 +1,8 @@
+Berserker'sGreaves 35 0 0 1100
+BootsOfMobility 0 0 0 900
+BootsOfSwiftness 0 0 0 900
+IonianBootsOfLucidity 0 0 0 900
+Mercury'sTreads 0 0 0 1100
+NinjaTabi 0 0 0 1100
+Sorcerer'sShoes 0 0 0 1100
+BootsOfSpeed 0 0 0 300
