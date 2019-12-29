@@ -5,15 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.event.*;
 import java.io.*;
 
-import static com.sun.javafx.util.Utils.split;
-
 @Slf4j
 public class Level implements ItemListener {
 
-  private MainPanel mP;
+  private final MainPanel mainPanel;
 
   Level(MainPanel mp) {
-    mP = mp;
+    this.mainPanel = mp;
   }
 
   @Override
@@ -21,62 +19,66 @@ public class Level implements ItemListener {
     int lev = 0;
     if (e.getStateChange() == ItemEvent.SELECTED) {
       lev = Integer.parseInt((String) e.getItem());
-      try (BufferedReader reader = new BufferedReader(new FileReader(mP.heroes.getSelectedItem() + ".txt"));
-           BufferedReader reader1 = new BufferedReader(new FileReader(mP.heroes.getSelectedItem() + "_D.txt"))) {
+
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+
+      String heroe = mainPanel.getHeroes().getSelectedItem().toString();
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream("txt/" + heroe + ".txt")));
+           BufferedReader reader1 = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream("txt/" + heroe + "_D.txt")))) {
         String r;
         String[] mass;
-        if ("Jhin".equals(mP.heroes.getSelectedItem())) {
+        if ("Jhin".equals(heroe)) {
           log.debug("внутри");
           while ((r = reader.readLine()) != null) {
-            mass = split(r, " ");
+            mass = r.split(" ");
             if (Integer.parseInt(mass[0]) == lev) {
-              mP.attackSpeed = Double.parseDouble(mass[1]);
+              mainPanel.setAttackSpeed(Double.parseDouble(mass[1]));
               //Slog.debug("AS2 {}", mP.attackSpeed);
               break;
             }
           }
           while ((r = reader1.readLine()) != null) {
-            mass = split(r, " ");
+            mass = r.split( " ");
             if (Integer.parseInt(mass[0]) == lev) {
-              mP.Jhin_BaseAd = Double.parseDouble(mass[1]);
+              mainPanel.setJhin_BaseAd(Double.parseDouble(mass[1]));
               //log.debug("Base AD {}", mP.Jhin_BaseAd);
               break;
             }
           }
-          mP.setStats();
-        } else if ("Caitlyn".equals(mP.heroes.getSelectedItem())) {
+          mainPanel.setStats();
+        } else if ("Caitlyn".equals(heroe)) {
           while ((r = reader1.readLine()) != null) {
-            mass = split(r, " ");
+            mass = r.split( " ");
             if (Integer.parseInt(mass[0]) == lev) {
-              mP.attackDamageLvl1 = Double.parseDouble(mass[1]);
+              mainPanel.setAttackDamageLvl1(Double.parseDouble(mass[1]));
               break;
             }
           }
           while ((r = reader.readLine()) != null) {
-            mass = split(r, " ");
+            mass = r.split( " ");
             if (Integer.parseInt(mass[0]) == lev) {
-              mP.ratio_base = Double.parseDouble(mass[1]);
-              mP.basicAS = mP.baseAS_Caitlyn + Double.parseDouble(mass[2]);
+              mainPanel.setRatio_base(Double.parseDouble(mass[1]));
+              mainPanel.setBasicAS(mainPanel.getBaseAS_Caitlyn() + Double.parseDouble(mass[2]));
             }
           }
-          mP.setStats();
+          mainPanel.setStats();
         } else {
           while ((r = reader.readLine()) != null) {
-            mass = split(r, " ");
+            mass = r.split( " ");
             if (Integer.parseInt(mass[0]) == lev) {
-              mP.ratio_base = Double.parseDouble(mass[1]);
+              mainPanel.setRatio_base( Double.parseDouble(mass[1]));
               //mP.lvl = lev;
               break;
             }
           }
           while ((r = reader1.readLine()) != null) {
-            mass = split(r, " ");
+            mass = r.split( " ");
             if (Integer.parseInt(mass[0]) == lev) {
-              mP.attackDamageLvl1 = Double.parseDouble(mass[1]);
+              mainPanel.setAttackDamageLvl1(Double.parseDouble(mass[1]));
               break;
             }
           }
-          mP.setStats();
+          mainPanel.setStats();
         }
       } catch (IOException ex) {
         log.error(ex.getMessage(), ex);

@@ -6,32 +6,31 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.*;
 
-import static com.sun.javafx.util.Utils.split;
-
 @Slf4j
 public class Heroes implements ItemListener {
 
-  private final MainPanel mP;
+  private final MainPanel mainPanel;
 
   Heroes(MainPanel mp) {
-    mP = mp;
+    this.mainPanel = mp;
   }
 
   @Override
   public void itemStateChanged(ItemEvent e) {
     if (e.getStateChange() == ItemEvent.SELECTED) {
       String hero = (String) e.getItem();
-      try (BufferedReader bf = new BufferedReader(new FileReader("Heroes.txt"))) {
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+      try (BufferedReader bf = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream("txt/Heroes.txt")))) {
         String s;
         String[] mass;
         while ((s = bf.readLine()) != null) {
           if (s.startsWith(hero)) {
-            mass = split(s, " ");
-            mP.attackDamageLvl1 = Double.parseDouble(mass[1]);
-            mP.basicAS = Double.parseDouble(mass[3]);
-            mP.setStats(hero);
-            log.debug("Damage {}", mP.attackDamageLvl1);
-            log.debug("AS {}", mP.basicAS);
+            mass = s.split( " ");
+            mainPanel.setAttackDamageLvl1(Double.parseDouble(mass[1]));
+            mainPanel.setBasicAS(Double.parseDouble(mass[3]));
+            mainPanel.setStats(hero);
+            log.debug("Damage {}", mainPanel.getAttackDamageLvl1());
+            log.debug("AS {}", mainPanel.getBasicAS());
             break;
           }
         }

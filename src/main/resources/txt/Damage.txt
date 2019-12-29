@@ -1,0 +1,12 @@
+BF 0 0 40 1300
+Bloodthirster 0 0 80 3500
+BOTRK 25 0 40 3300
+Dorans 0 0 8 450
+EssenceReaver 0 25 70 3300
+InfinityEdge 0 25 80 3400
+Pickaxe 0 0 25 875
+Stormrazor 15 25 55 3200
+LongSword 0 0 10 350
+VampiricScepter 0 0 15 900
+BilgewaterCutlass 0 0 25 1600
+Caulfields`sWarhammer 0 0 25 1100

@@ -8,8 +8,6 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 
-import static com.sun.javafx.util.Utils.split;
-
 @Slf4j
 public class Inventory extends JPanel implements ActionListener {
 
@@ -53,22 +51,23 @@ public class Inventory extends JPanel implements ActionListener {
     if (!"0".equals(e.getActionCommand())) {
       String[] mass;
       String[] mass1;
-      mass = split(e.getActionCommand(), " ");
-      try (BufferedReader reader = new BufferedReader(new FileReader(mass[1] + ".txt"))) {
+      mass = e.getActionCommand().split(" ");
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream("txt/" + mass[1] + ".txt")))) {
         String s;
         while ((s = reader.readLine()) != null) {
-          mass1 = split(s, " ");
+          mass1 = s.split(" ");
           if (mass1[0].equals(mass[0])) {
-            mP.ratioItem -= Double.parseDouble(mass1[1]);
-            if (mP.critChanceExtra != 0) {
-              mP.critChanceExtra -= Integer.parseInt(mass1[2]);
-            } else if ((mP.critChance - Integer.parseInt(mass1[2])) < 0) {
-              mP.critChance = 0;
+            mP.setRatioItem( mP.getRatioItem() - Double.parseDouble(mass1[1]));
+            if (mP.getCritChanceExtra() != 0) {
+              mP.setCritChanceExtra(mP.getCritChanceExtra() - Integer.parseInt(mass1[2]));
+            } else if ((mP.getCritChance() - Integer.parseInt(mass1[2])) < 0) {
+              mP.setCritChance(0);
             } else {
-              mP.critChance -= Integer.parseInt(mass1[2]);
+              mP.setCritChance( mP.getCritChance() - Integer.parseInt(mass1[2]));
             }
-            mP.attackDamageItem -= Double.parseDouble(mass1[3]);
-            mP.price -= Integer.parseInt(mass1[4]);
+            mP.setAttackDamageItem( mP.getAttackDamageItem() - Double.parseDouble(mass1[3]));
+            mP.setPrice( mP.getPrice() - Integer.parseInt(mass1[4]));
             mP.setStats();
             break;
           }

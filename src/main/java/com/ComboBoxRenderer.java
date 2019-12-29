@@ -1,8 +1,13 @@
 package com;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
+@Slf4j
 public class ComboBoxRenderer extends JLabel implements ListCellRenderer {
 
   ComboBoxRenderer() {
@@ -22,11 +27,15 @@ public class ComboBoxRenderer extends JLabel implements ListCellRenderer {
       setForeground(list.getForeground());
     }
 
-    ImageIcon icon = new ImageIcon(name + ".png");
-    setIcon(icon);
-    if (icon != null) {
+    try {
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+      byte[] image = IOUtils.toByteArray(classloader.getResourceAsStream("images/" + name + ".png"));
+      ImageIcon icon = new ImageIcon(image);
+      setIcon(icon);
       setText(name);
       setFont(list.getFont());
+    } catch (IOException ex) {
+      log.error(ex.getMessage(), ex);
     }
     return this;
   }
