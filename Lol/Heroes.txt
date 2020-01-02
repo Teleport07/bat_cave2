@@ -1,0 +1,20 @@
+Ashe 61 2.96 0.658
+Caitlyn 62 2.88 0.568
+Draven 60 3.61 0.679
+Ezreal 60 2.5 0.625
+Jhin 59 4.7 0.625
+Jinx 57 3.4 0.625
+Kaisa 59 1.7 0.644
+Kalista 69 4 0.694
+KogMaw 61 3.11 0.665
+Lucian 64 2.75 0.638
+MissFortune 50 2.7 0.656
+Sivir 61 3 0.625
+Tristana 61 3.3 0.656
+Twitch 59 3.11 0.679
+Varus 61 3.11 0.658
+Vayne 60 2.36 0.658
+Xayah 60 2.9 0.625
+
+1 lvl 61+5 0.658 + 13% = 0.744
+2 lvl 68.96 0.7659
