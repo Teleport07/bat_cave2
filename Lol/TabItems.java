@@ -1,13 +1,8 @@
 package Lol;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -18,7 +13,7 @@ public class TabItems extends JPanel {
     String item;
     String mass[];
 
-    TabItems(String it, MainPanel mp, Inventory inv) {
+    TabItems(String it, MainPanel mp) {
         setLayout(new GridLayout(2, 4));
         mainP = mp;
         int count = 0;
@@ -31,11 +26,8 @@ public class TabItems extends JPanel {
             ex.printStackTrace();
         }
         try (BufferedReader bf = new BufferedReader(new FileReader(it + ".txt"))) {
-            mass = new String[4];
-            System.out.println("Count " + count);
             for (int i = 0; i < count; i++) {
                 item = bf.readLine();
-                System.out.println(item);
                 mass = split(item, " ");
                 JButton butt = new JButton(new ImageIcon(mass[0] + ".png"));
                 butt.addActionListener(new TabItemsListener(mp, it));

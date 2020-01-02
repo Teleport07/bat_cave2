@@ -10,6 +10,8 @@ import java.io.IOException;
 import static com.sun.javafx.util.Utils.split;
 
 public class InventoryListener implements ActionListener {
+    String mass[];
+    String mass1[];
     MainPanel mP;
     boolean f;
     DialogHp dial;
@@ -26,11 +28,8 @@ public class InventoryListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand()!="0"){
-            String mass[];
-            String mass1[];
-            System.out.println("Внутри");
             mass = split(e.getActionCommand()," ");
-            if((mass[0].equals("BOTRK"))&& f){
+            if(mass[0].equals("BOTRK")&&f){
                 new DialogHp(mP, true);
             }else {
                 try (BufferedReader reader = new BufferedReader(new FileReader(mass[1] + ".txt"))) {
@@ -41,8 +40,6 @@ public class InventoryListener implements ActionListener {
                             mP.ratioItem-=Double.parseDouble(mass1[1]);
                             if (mP.critChanceExtra != 0) {
                                 mP.critChanceExtra -= Integer.parseInt(mass1[2]);
-                            } else if ((mP.critChance - Integer.parseInt(mass1[2])) < 0) {
-                                mP.critChance = 0;
                             } else {
                                 mP.critChance -= Integer.parseInt(mass1[2]);
                             }

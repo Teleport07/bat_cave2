@@ -1,9 +1,6 @@
 package Lol;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import org.w3c.dom.ls.LSOutput;
 
-import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.BufferedReader;
@@ -41,7 +38,6 @@ public class Level implements ItemListener {
                             break;
                         }
                     }
-                    mP.setStats();
                 } else if(mP.heroes.getSelectedItem().equals("Caitlyn")){
                     while ((r = reader1.readLine()) != null) {
                         mass = split(r, " ");
@@ -57,7 +53,6 @@ public class Level implements ItemListener {
                             mP.basicAS=mP.baseAS_Caitlyn+Double.parseDouble(mass[2]);
                         }
                     }
-                    mP.setStats();
                 }else{
                     while ((r = reader.readLine()) != null) {
                         mass = split(r, " ");
@@ -73,8 +68,8 @@ public class Level implements ItemListener {
                             break;
                         }
                     }
-                    mP.setStats();
                 }
+                mP.setStats();
                 } catch(IOException ex){
                     ex.printStackTrace();
                 }

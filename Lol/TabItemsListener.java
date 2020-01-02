@@ -1,6 +1,5 @@
 package Lol;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +39,6 @@ public class TabItemsListener implements ActionListener {
                         if(mass[0].equals(e.getActionCommand())){
                             mP.ratioItem+=Double.parseDouble(mass[1]);
                             if(mP.critChance+Integer.parseInt(mass[2])>100){
-                                mP.critChance = 100;
                                 mP.critChanceExtra +=Integer.parseInt(mass[2]);
                             }else{
                                 mP.critChance+=Integer.parseInt(mass[2]);
@@ -51,7 +49,6 @@ public class TabItemsListener implements ActionListener {
                             break;
                         }
                     }
-                    System.out.println("Ratio "+mP.ratioItem);
                 }catch (IOException ex){
                     ex.printStackTrace();
                 }

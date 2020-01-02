@@ -1,12 +1,10 @@
 package Lol;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.*;
-import java.util.StringTokenizer;
+
 
 import static com.sun.javafx.util.Utils.split;
 
@@ -29,8 +27,6 @@ public class Heroes implements ItemListener {
                         mP.attackDamageLvl1 = Double.parseDouble(mass[1]);
                         mP.basicAS = Double.parseDouble(mass[3]);
                         mP.setStats();
-                        System.out.println("Damage "+mP.attackDamageLvl1);
-                        System.out.println("AS "+ mP.basicAS);
                         break;
                     }
                 }

@@ -2,15 +2,15 @@ package Lol;
 
 import javax.swing.*;
 
+
 public class PanelOfItems extends JTabbedPane{
+    MainPanel mainP;
+    String item;
+    String mass[];
 
-
-    PanelOfItems (MainPanel maP, Inventory inv){
-
-        addTab("Boots",new TabItems("Boots", maP, inv));
-        addTab("Damage", new TabItems("Damage",maP, inv));
-        addTab("AttackSpeed", new TabItems("AttackSpeed",maP, inv));
-
+    PanelOfItems (MainPanel maP){
+        addTab("Boots",new TabItems("Boots", maP));
+        addTab("Damage", new TabItems("Damage",maP));
+        addTab("AttackSpeed", new TabItems("AttackSpeed",maP));
     }
-
 }

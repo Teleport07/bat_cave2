@@ -2,7 +2,6 @@ package Lol;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Formatter;
 
 public class MainPanel extends JFrame {
@@ -52,10 +51,11 @@ public class MainPanel extends JFrame {
         stat.add(HP);
 
         level = new JComboBox(levels);
-        level.addItemListener(new Level(this));
 
+        level.addItemListener(new Level(this));
+        level.setSelectedIndex(0);
         inv = new Inventory(this);
-        items = new PanelOfItems(this, inv);
+        items = new PanelOfItems(this);
 
         add(heroes);
         add(level);

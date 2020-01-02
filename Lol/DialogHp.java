@@ -1,7 +1,6 @@
 package Lol;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +29,7 @@ public class DialogHp extends JDialog {
         setSize(300,100);
         setVisible(true);
         b2.setActionCommand("BOTRK Damage");
-        b2.addActionListener(new InventoryListener(mp,false, this));
+        b2.addActionListener(new InventoryListener(mp, false, this));
     }
     DialogHp(MainPanel mp){
         super(mp,"Max XP");
@@ -40,7 +39,6 @@ public class DialogHp extends JDialog {
 
         lab = new JLabel("Enter Max HP");
         setSize(300,100);
-
 
         text = new JTextField(10);
         panel.add(lab);
